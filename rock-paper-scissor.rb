@@ -1,6 +1,7 @@
 # Go back and provide method documentation for all of your classes and custom-written methods. If you wrote the class (or method), you gotta document it.
 
 require 'pry'
+require_relative 'player.rb'
 
 # Public: #start_rps
 # Starts and then plays the game with the provided players.
@@ -73,29 +74,6 @@ def start_rps(wins_needed = 1, name1 = "Player 1", name2 = "Player 2")
   print ".  You win!"
   
   valid_moves
-end
-
-# Class: Player
-#
-# Models each player within the game
-#
-# Attributes:
-# @name   - String: the player's name.
-# @move   - String: the move the player is using
-# @score  - Integer: the number of times the player has won in the current series
-#
-# Public Methods:
-# None yet.
-
-class Player
-  attr_reader :name
-  attr_accessor :move, :score
-  
-  def initialize(name)
-    @name = name
-    @move = ""
-    @score = 0
-  end
 end
 
 binding.pry
