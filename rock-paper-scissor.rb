@@ -1,6 +1,20 @@
-# Players should be able to play a best-of-n match, which will require you to keep track of each player’s score.
+# Go back and provide method documentation for all of your classes and custom-written methods. If you wrote the class (or method), you gotta document it.
 
 require 'pry'
+
+# Public: #start_rps
+# Starts and then plays the game with the provided players.
+#
+# Parameters:
+# wins_needed - Wins needed to conclude a series of rounds.  Default is 1.
+# name1       - Name of the first player to be created
+# name2     - Name of the second player to be created
+#
+# Returns:
+# A hash of valid moves
+#
+# State Changes:
+# None.  All changes are local and will be obliterated upon conclusion of the method.
 
 def start_rps(wins_needed = 1, name1 = "Player 1", name2 = "Player 2")
   valid_moves = {"Rock" => 1, "Paper" => 3, "Scissors" => 7}
@@ -57,8 +71,21 @@ def start_rps(wins_needed = 1, name1 = "Player 1", name2 = "Player 2")
     print player2.name
   end
   print ".  You win!"
+  
+  valid_moves
 end
 
+# Class: Player
+#
+# Models each player within the game
+#
+# Attributes:
+# @name   - String: the player's name.
+# @move   - String: the move the player is using
+# @score  - Integer: the number of times the player has won in the current series
+#
+# Public Methods:
+# None yet.
 
 class Player
   attr_reader :name
