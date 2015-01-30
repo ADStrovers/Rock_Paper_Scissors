@@ -13,6 +13,9 @@ require 'pry'
 # #start_rps
 
 class GameDriver
+  def initialize(*players)
+    start_rps(players[0], players[1])
+  end
   
   def start_rps(name1, name2)
     rules = RPSRules.new
