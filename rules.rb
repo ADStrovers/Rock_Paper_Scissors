@@ -1,9 +1,9 @@
 class RPSRules
   
   def initialize
-    @rules_matrix = {"Rock"     => {"Rock" => "Draw", "Paper" => "Lose", "Scissors" => "Win"},
-                     "Paper"    => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"},
-                     "Scissors" => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"}}
+    @rules_matrix = {"Rock"     => {"Rock" => 0, "Paper" => 2, "Scissors" => 1},
+                     "Paper"    => {"Rock" => 1, "Paper" => 0, "Scissors" => 2},
+                     "Scissors" => {"Rock" => 2, "Paper" => 1, "Scissors" => 0}}
   end
 
   def validate_move(move)

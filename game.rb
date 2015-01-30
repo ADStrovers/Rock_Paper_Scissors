@@ -18,10 +18,10 @@ require_relative 'player'
 
 class Game
   
-  def initialize(ruleset, player1, player2)
+  def initialize(ruleset, *players)
     @validator = ruleset
-    @players = [player1, player2]
-    @victory_condition = false
+    @players = players
+    @victory_condition = 0
   end
   
   # Public: #play_rps
@@ -40,7 +40,7 @@ class Game
     wins_needed
     until wins_needed_met?
       get_rps_moves
-      result(@players[0], @players[1])
+      compare(@players[0], @players[1])
     end
   end
   
@@ -59,15 +59,13 @@ class Game
   # Sets @victory_condition
   
   def wins_needed
-    x = 0
-    until x != 0
+    until @victory_condition != 0
       print "How many rounds need to be won to win the game? "
-      x = gets.chomp.to_i
-      if x == 0
+      @victory_condition = gets.chomp.to_i
+      if @victory_condition == 0
         "I'm sorry that is not a valid number. Please try again."
       end
     end
-    @victory_condition = x
   end
   
   # Private: #get_rps_moves
@@ -102,26 +100,33 @@ class Game
   # State Changes:
   # Changes the state of move for people player within @players.
   
-  def result(player1, player2)
-    compare = @validator.compare_results(player1.move, player2.move)
-    case compare
-    when "Win"
-      player1.increase_score
-      puts "Congrats #{player1.name}!  You won this round."
-    when "Lose"
-      player2.increase_score
-      puts "Congrats #{player2.name}!  You won this round."
-    else
-      puts "This round was a tie."
-    end
+  def compare(player1, player2)
+    res = @validator.compare_results(player1.move, player2.move)
+    result(res)
     player1.move = player2.move = ""
   end
   
+  
+  # REFACTOR THIS!!
+  
+  def result(str)
+    case str
+    when 1
+      @players[0].increase_score
+      puts "Congrats #{@players[0].name}!  You won this round."
+    when 2
+      @players[1].increase_score
+      puts "Congrats #{@players[1].name}!  You won this round."
+    else
+      puts "This round was a tie."
+    end
+  end
+
   def wins_needed_met?
     done = false
     @players.each do |player|
       if player.score == @victory_condition
-        done = true
+        done = player.won = true
       end
     end
     done
