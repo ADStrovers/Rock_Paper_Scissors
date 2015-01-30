@@ -1,12 +1,23 @@
+require_relative 'player'
+require_relative 'game'
 require 'pry'
-require_relative 'player.rb'
-require_relative 'game.rb'
 
-class Driver
+# Class: Driver
+#
+# Responsible for the creation of the game and players and printing the results of the game.
+#
+# Attributes:
+# @winner   - String: Holds the name of the winning object
+#
+# Public Methods:
+# #start_rps
+
+class GameDriver
   def initialize
+    @winner = ""
   end
   
-  def play_rps(name1, name2)
+  def start_rps(name1, name2)
     player1 = Player.new(name1)
     player2 = Player.new(name2)
     rps_game = Game.new(player1, player2)

@@ -1,28 +1,67 @@
+require_relative 'driver'
 require_relative 'player'
+# require 'pry'
+
+# Class: Game
+#
+# In charge of running our games.
+#
+# Attributes:
+# @players            - Array: holds player objects
+# @victory_condition  - Boolean: Determines if the game has been won
+# @winning_player     - String: Holds the name of the last round's winner
+# @rules_matrix       - Hash: Contains winning/losing/draw conditions between moves
+#
+# Public Methods:
+# #play_rps
 
 class Game
   
   def initialize(player1, player2)
     @players = [player1, player2]
-    @victory_condition = nil
+    @victory_condition = false
     @winning_player = ""
-    @valid_moves = ["Rock", "Paper", "Scissors"]
     @rules_matrix = {"Rock"     => {"Rock" => "Draw", "Paper" => "Lose", "Scissors" => "Win"},
                      "Paper"    => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"},
                      "Scissors" => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"}}
   end
   
+  # Public: #play_rps
+  # Starts and then plays the game with the provided players.
+  #
+  # Parameters:
+  # None currently
+  #
+  # Returns:
+  # @winning_player: Whoever was victorious.
+  #
+  # State Changes:
+  # Not responsible for state changes.
+  
   def play_rps
     wins_needed
     until wins_needed_met?
-      get_rps_moves
+      x = get_rps_moves
       compare_results(@players[0], @players[1])
       print_result
     end
+    puts x
     @winning_player
   end
   
-  private
+  # private
+  
+  # Private: #wins_needed
+  # Defines the wins needed based on user input.
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # @victory_condition
+  #
+  # State Changes:
+  # Sets @victory_condition
   
   def wins_needed
     x = 0
@@ -35,6 +74,18 @@ class Game
     end
     @victory_condition = x
   end
+  
+  # Private: #get_rps_moves
+  # Takes input from player on desired move and checks to see if it is valid.
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # @player
+  #
+  # State Changes:
+  # Changes the state of move for people player within @players.
   
   def get_rps_moves
     @players.each do |player|
@@ -77,3 +128,5 @@ class Game
   end
   
 end
+
+# binding.pry

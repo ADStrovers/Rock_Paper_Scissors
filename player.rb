@@ -1,3 +1,6 @@
+require_relative 'driver'
+require_relative 'game'
+
 # Class: Player
 #
 # Models each player within the game
