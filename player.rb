@@ -14,12 +14,17 @@ require_relative 'game'
 # None yet.
 
 class Player
-  attr_reader :name
-  attr_accessor :move, :score
+  attr_reader :name, :score
+  attr_accessor :move
   
   def initialize(name)
     @name = name
     @move = ""
     @score = 0
   end
+  
+  def increase_score(inc = 1)
+    @score += 1
+  end
+  
 end

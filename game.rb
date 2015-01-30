@@ -41,11 +41,10 @@ class Game
   def play_rps
     wins_needed
     until wins_needed_met?
-      x = get_rps_moves
+      get_rps_moves
       compare_results(@players[0], @players[1])
       print_result
     end
-    puts x
     @winning_player
   end
   
@@ -96,15 +95,27 @@ class Game
     end
   end
   
+  # Private: #get_rps_moves
+  # Takes input from player on desired move and checks to see if it is valid.
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # @player
+  #
+  # State Changes:
+  # Changes the state of move for people player within @players.
+  
   def compare_results(player1, player2)
     result = @rules_matrix[player1.move][player2.move]
     case result
     when "Win"
       @winning_player = player1.name
-      player1.score += 1
+      player1.increase_score
     when "Lose"
       @winning_player = player2.name
-      player2.score += 1
+      player2.increase_score
     end
     player1.move = player2.move = ""
   end
