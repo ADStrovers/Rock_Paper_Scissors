@@ -39,9 +39,11 @@ class Game
   def play_rps
     wins_needed
     until wins_needed_met?
+      @validator.provide_moves
       get_rps_moves
-      compare(@players[0], @players[1])
+      y = compare(@players[0], @players[1])
     end
+    y
   end
   
   private
@@ -104,7 +106,8 @@ class Game
   def compare(player1, player2)
     res = @validator.compare_results(player1.move, player2.move)
     player1.move = player2.move = ""  # Does this break LoD?  I assume it does..  Will need to think about how to refactor
-    result(res)
+    x = result(res)
+    x
   end
   
   # Private: #result
@@ -130,6 +133,7 @@ class Game
     else
       puts "This round was a tie."
     end
+    @players[int].name
   end
 
   # Private: #wins_needed_met

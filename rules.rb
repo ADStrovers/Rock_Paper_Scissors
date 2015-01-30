@@ -14,6 +14,11 @@ class RPSRules
                      "Scissors" => {"Rock" => 1, "Paper" => 0, "Scissors" => nil}}
   end
 
+  def provide_moves
+    valid_moves = @rules_matrix.keys
+    puts "Valid moves are: #{valid_moves.join(", ")}"
+  end
+  
   # Public: #validate_move
   # Checks to see if passed in argument is found within the rules_matrix as a valid move.
   #
