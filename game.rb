@@ -24,7 +24,7 @@ class Game
     @victory_condition = 0
   end
   
-  # Public: #play_rps
+  # Private: #play_rps
   # Starts and then plays the game with the provided players.
   #
   # Parameters:
@@ -43,6 +43,8 @@ class Game
       compare(@players[0], @players[1])
     end
   end
+  
+  private
   
   # Private: #wins_needed
   # Defines the wins needed based on user input.
