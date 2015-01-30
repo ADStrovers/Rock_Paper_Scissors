@@ -1,6 +1,3 @@
-require_relative 'driver'
-require_relative 'game'
-
 # Class: Player
 #
 # Models each player within the game
@@ -15,16 +12,22 @@ require_relative 'game'
 
 class Player
   attr_reader :name, :score
-  attr_accessor :move
+  attr_accessor :won, :move
   
   def initialize(name)
     @name = name
     @move = ""
     @score = 0
+    @won = false
   end
   
   def increase_score(inc = 1)
     @score += 1
+  end
+  
+  def get_move
+    print "#{@name}, please give me your move: "
+    @move = gets.chomp.capitalize
   end
   
 end

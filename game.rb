@@ -1,5 +1,6 @@
-require_relative 'driver'
+require_relative 'rules'
 require_relative 'player'
+
 # require 'pry'
 
 # Class: Game
@@ -17,13 +18,10 @@ require_relative 'player'
 
 class Game
   
-  def initialize(player1, player2)
+  def initialize(ruleset, player1, player2)
+    @validator = ruleset
     @players = [player1, player2]
     @victory_condition = false
-    @winning_player = ""
-    @rules_matrix = {"Rock"     => {"Rock" => "Draw", "Paper" => "Lose", "Scissors" => "Win"},
-                     "Paper"    => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"},
-                     "Scissors" => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"}}
   end
   
   # Public: #play_rps
@@ -42,10 +40,8 @@ class Game
     wins_needed
     until wins_needed_met?
       get_rps_moves
-      compare_results(@players[0], @players[1])
-      print_result
+      result(@players[0], @players[1])
     end
-    @winning_player
   end
   
   # private
@@ -88,14 +84,13 @@ class Game
   
   def get_rps_moves
     @players.each do |player|
-      until @rules_matrix.has_key?(player.move)
-        print "#{player.name}, please give me your move: "
-        player.move = gets.chomp.capitalize
+      until @validator.validate_move(player.move)
+        player.get_move
       end
     end
   end
   
-  # Private: #get_rps_moves
+  # Private: #result
   # Takes input from player on desired move and checks to see if it is valid.
   #
   # Parameters:
@@ -107,25 +102,19 @@ class Game
   # State Changes:
   # Changes the state of move for people player within @players.
   
-  def compare_results(player1, player2)
-    result = @rules_matrix[player1.move][player2.move]
-    case result
+  def result(player1, player2)
+    compare = @validator.compare_results(player1.move, player2.move)
+    case compare
     when "Win"
-      @winning_player = player1.name
       player1.increase_score
+      puts "Congrats #{player1.name}!  You won this round."
     when "Lose"
-      @winning_player = player2.name
       player2.increase_score
+      puts "Congrats #{player2.name}!  You won this round."
+    else
+      puts "This round was a tie."
     end
     player1.move = player2.move = ""
-  end
-  
-  def print_result
-    if @winning_player == ""
-      puts "This round was a tie."
-    else
-      puts "Congrats #{@winning_player}!  You won this round."
-    end
   end
   
   def wins_needed_met?
@@ -139,5 +128,3 @@ class Game
   end
   
 end
-
-# binding.pry
