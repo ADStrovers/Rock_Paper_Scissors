@@ -3,6 +3,8 @@ require_relative 'player.rb'
 require_relative 'game.rb'
 
 class Driver
+  def initialize
+  end
   
   def play_rps(name1, name2)
     player1 = Player.new(name1)

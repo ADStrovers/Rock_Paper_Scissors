@@ -1,14 +1,14 @@
+require_relative 'player'
+
 class Game
-  @players = []
-  @valid_moves = ["Rock", "Paper", "Scissors"]
-  @rules_matrix = {"Rock" => {"Rock" => "Draw", "Paper" => "Lose", "Scissors" => "Win"},
-                   "Paper" => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"},
-                   "Scissors" => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"}}
-    
-  def initialize(*players)
-    @players = players.each
+  def initialize(player1, player2)
+    @players = [player1, player2]
     @victory_condition = nil
     @winning_player = ""
+    @valid_moves = ["Rock", "Paper", "Scissors"]
+    @rules_matrix = {"Rock"     => {"Rock" => "Draw", "Paper" => "Lose", "Scissors" => "Win"},
+                     "Paper"    => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"},
+                     "Scissors" => {"Rock" => "Win", "Paper" => "Draw", "Scissors" => "Lose"}}
   end
   
   def play_rps
@@ -18,7 +18,10 @@ class Game
       compare_results(@players[0], @players[1])
       print_result
     end
+    print_final_result
   end
+  
+  private
   
   def wins_needed
     x = 0
@@ -28,7 +31,6 @@ class Game
       if x == 0
         "I'm sorry that is not a valid number. Please try again."
       end
-      puts x
     end
     @victory_condition = x
   end
@@ -52,6 +54,7 @@ class Game
       @winning_player = player2.name
       player2.score += 1
     end
+    player1.move = player2.move = ""
   end
   
   def print_result
@@ -62,10 +65,14 @@ class Game
     end
   end
   
+  def print_final_result
+    puts "Congrats #{@winning_player}!  You won the best of #{@victory_condition*2-1}."
+  end
+  
   def wins_needed_met?
     done = false
     @players.each do |player|
-      if player.score == wins_needed
+      if player.score == @victory_condition
         done = true
       end
     end
