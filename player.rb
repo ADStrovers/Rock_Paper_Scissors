@@ -39,6 +39,17 @@ class Player
     @score += inc.to_i
   end
   
+  # Public: #get_move
+  # Prompts for a string and sets @move to that string.
+  #
+  # Parameters:
+  #
+  # Returns:
+  # @move
+  #
+  # State Changes:
+  # @move
+  
   def get_move
     print "#{@name}, please give me your move: "
     @move = gets.chomp.capitalize

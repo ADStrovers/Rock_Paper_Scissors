@@ -69,13 +69,13 @@ class Game
   end
   
   # Private: #get_rps_moves
-  # Takes input from player on desired move and checks to see if it is valid.
+  # Takes input from player on desired move and passes them to the RPSRules for validation
   #
   # Parameters:
   # None
   #
   # Returns:
-  # @player
+  # @players array
   #
   # State Changes:
   # Changes the state of move for people player within @players.
@@ -88,40 +88,62 @@ class Game
     end
   end
   
+  # Private: #compare
+  # Passes moves to the ruleset for comparison and then wipes the moves and calls result.
+  #
+  # Parameters:
+  # player1   - Player: first player object
+  # player1   - Player: first player object
+  #
+  # Returns:
+  # nil
+  #
+  # State Changes:
+  # 
+  
+  def compare(player1, player2)
+    res = @validator.compare_results(player1.move, player2.move)
+    player1.move = player2.move = ""  # Does this break LoD?  I assume it does..  Will need to think about how to refactor
+    result(res)
+  end
+  
   # Private: #result
   # Takes input from player on desired move and checks to see if it is valid.
   #
   # Parameters:
-  # None
+  # int   - Integer: Position within @players that the winning object resides.
   #
   # Returns:
-  # @player
+  # nil?  #Unsure just right now.
   #
   # State Changes:
-  # Changes the state of move for people player within @players.
+  # Changes the score of the winning object
   
-  def compare(player1, player2)
-    res = @validator.compare_results(player1.move, player2.move)
-    player1.move = player2.move = ""
-    result(res)
-  end
-  
-  
-  # REFACTOR THIS!!
-  
-  def result(str)
-    case str
-    when 1
-      @players[0].increase_score
+  def result(int)
+    case int
+    when 0
+      @players[int].increase_score
       puts "Congrats #{@players[0].name}!  You won this round."
-    when 2
-      @players[1].increase_score
+    when 1
+      @players[int].increase_score
       puts "Congrats #{@players[1].name}!  You won this round."
     else
       puts "This round was a tie."
     end
   end
 
+  # Private: #wins_needed_met
+  # Checks each player's .score to see if it matches the @victory_condition.
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # Returns the value of the "done" boolean
+  #
+  # State Changes:
+  # Changes the state of the winning player's @won attribute.
+  
   def wins_needed_met?
     done = false
     @players.each do |player|
