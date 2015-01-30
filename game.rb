@@ -1,6 +1,7 @@
 require_relative 'player'
 
 class Game
+  
   def initialize(player1, player2)
     @players = [player1, player2]
     @victory_condition = nil
@@ -18,7 +19,7 @@ class Game
       compare_results(@players[0], @players[1])
       print_result
     end
-    print_final_result
+    @winning_player
   end
   
   private
@@ -63,10 +64,6 @@ class Game
     else
       puts "Congrats #{@winning_player}!  You won this round."
     end
-  end
-  
-  def print_final_result
-    puts "Congrats #{@winning_player}!  You won the best of #{@victory_condition*2-1}."
   end
   
   def wins_needed_met?

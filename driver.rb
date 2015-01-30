@@ -10,9 +10,15 @@ class Driver
     player1 = Player.new(name1)
     player2 = Player.new(name2)
     rps_game = Game.new(player1, player2)
-    rps_game.play_rps
+    @winner = rps_game.play_rps
+    print_results
   end
   
+  private
+  
+  def print_results
+    puts "Congrats #{@winner}!  You won the game!"
+  end
 end
 
 binding.pry
