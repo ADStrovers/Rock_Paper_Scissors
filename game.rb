@@ -44,8 +44,6 @@ class Game
     end
   end
   
-  # private
-  
   # Private: #wins_needed
   # Defines the wins needed based on user input.
   #
@@ -102,8 +100,8 @@ class Game
   
   def compare(player1, player2)
     res = @validator.compare_results(player1.move, player2.move)
-    result(res)
     player1.move = player2.move = ""
+    result(res)
   end
   
   

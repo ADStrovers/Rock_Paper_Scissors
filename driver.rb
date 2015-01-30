@@ -7,15 +7,30 @@ require 'pry'
 # Responsible for the creation of the game and players and printing the results of the game.
 #
 # Attributes:
-# @winner   - String: Holds the name of the winning object
+# None
 #
 # Public Methods:
-# #start_rps
+# None
 
 class GameDriver
   def initialize(*players)
     start_rps(players[0], players[1])
   end
+  
+  private
+  
+  # Private: #play
+  # In charge of creating other objects and passing them into the game.
+  #
+  # Parameters:
+  # name1 - String: Name of the first player class to be made.
+  # name2 - String: Name of the second player class to be made.
+  #
+  # Returns:
+  # An emptry string.
+  #
+  # State Changes:
+  # None
   
   def start_rps(name1, name2)
     rules = RPSRules.new
@@ -26,7 +41,17 @@ class GameDriver
     print_results
   end
   
-  private
+  # Private: #play
+  # Responsible for printing the winner of the game
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # nil
+  #
+  # State Changes:
+  # None
   
   def print_results
     puts "Congrats #{@winner}!  You won the game!"
