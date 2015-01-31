@@ -25,4 +25,10 @@ class PlayerTest < Minitest::Test
     assert_equal 1, pl.score
   end
   
+  def test_edge_cases_for_increase_score_method
+    pl = Player.new("Erin")
+    pl.increase_score "Zoom"
+    assert_equal 0, pl.score
+  end
+  
 end

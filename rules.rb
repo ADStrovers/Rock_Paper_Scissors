@@ -14,6 +14,18 @@ class RPSRules
                      "Scissors" => {"Rock" => 1, "Paper" => 0, "Scissors" => nil}}
   end
 
+  # Public: #provide_moves
+  # Prints out the valid moves based on the current rule set.
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # Nil
+  #
+  # State Changes:
+  # None
+  
   def provide_moves
     valid_moves = @rules_matrix.keys
     puts "Valid moves are: #{valid_moves.join(", ")}"

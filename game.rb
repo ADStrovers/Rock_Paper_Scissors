@@ -61,10 +61,10 @@ class Game
   # Sets @victory_condition
   
   def wins_needed
-    until @victory_condition != 0
+    until @victory_condition > 0
       print "How many rounds need to be won to win the game? "
       @victory_condition = gets.chomp.to_i
-      if @victory_condition == 0
+      if @victory_condition <= 0
         "I'm sorry that is not a valid number. Please try again."
       end
     end
