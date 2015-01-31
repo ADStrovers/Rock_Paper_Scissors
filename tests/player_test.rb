@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative 'player'
+require_relative '../player'
 
 class PlayerTest < Minitest::Test
   

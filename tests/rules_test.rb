@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative 'rules'
+require_relative '../rules'
 
 class RulesTest < Minitest::Test
   
