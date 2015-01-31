@@ -38,6 +38,7 @@ class Game
   
   def play_rps
     wins_needed
+    puts "Valid moves are: #{@validator.provide_moves.join(", ")}"
     until wins_needed_met?
       get_rps_moves
       y = compare(@players[0], @players[1])
@@ -132,7 +133,9 @@ class Game
     else
       puts "This round was a tie."
     end
-    @players[int].name
+    if int
+      @players[int].name
+    end
   end
 
   # Private: #wins_needed_met

@@ -26,9 +26,8 @@ class RPSRules
   # State Changes:
   # None
   
-  def provide_moves
+  def provide_moves(args = 0)
     valid_moves = @rules_matrix.keys
-    puts "Valid moves are: #{valid_moves.join(", ")}"
     valid_moves
   end
   

@@ -1,4 +1,4 @@
-require_relative 'player'
+require_relative 'player_factory'
 require_relative 'game'
 require 'pry'
 
@@ -13,8 +13,8 @@ require 'pry'
 # None
 
 class GameDriver
-  def initialize(*players)
-    start_rps(players[0], players[1])
+  def initialize(player1 = "ai_player", player2 = "ai_player")
+    start_rps(player1, player2)
   end
   
   private
@@ -33,9 +33,10 @@ class GameDriver
   # None
   
   def start_rps(name1, name2)
+    factory = PlayerFactory.new
     rules = RPSRules.new
-    player1 = Player.new(name1)
-    player2 = Player.new(name2)
+    player1 = factory.create_player(name1, rules)
+    player2 = factory.create_player(name2, rules)
     rps_game = Game.new(rules, player1, player2)
     @winner = rps_game.play_rps
     print_results
