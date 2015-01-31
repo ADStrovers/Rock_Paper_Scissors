@@ -29,6 +29,7 @@ class RPSRules
   def provide_moves
     valid_moves = @rules_matrix.keys
     puts "Valid moves are: #{valid_moves.join(", ")}"
+    valid_moves
   end
   
   # Public: #validate_move

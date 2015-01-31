@@ -39,7 +39,6 @@ class Game
   def play_rps
     wins_needed
     until wins_needed_met?
-      @validator.provide_moves
       get_rps_moves
       y = compare(@players[0], @players[1])
     end
