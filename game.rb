@@ -36,11 +36,11 @@ class Game
   # State Changes:
   # Not responsible for state changes.
   
-  def play_rps
+  def play
     wins_needed
     puts "Valid moves are: #{@validator.provide_moves.join(", ")}"
     until wins_needed_met?
-      get_rps_moves
+      get_moves
       y = compare(@players[0], @players[1])
     end
     y
@@ -82,7 +82,7 @@ class Game
   # State Changes:
   # Changes the state of move for people player within @players.
   
-  def get_rps_moves
+  def get_moves
     @players.each do |player|
       until @validator.validate_move(player.move)
         player.get_move

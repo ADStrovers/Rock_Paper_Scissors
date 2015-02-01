@@ -27,14 +27,14 @@ class GameDriver
   # State Changes:
   # None
   
-  def start_rps
+  def start_game
     game_type = get_game_type
     player1 = get_player
     player2 = get_player
     factory = PlayerFactory.new
     
-    rps_game = Game.new(@rules, player1, player2)
-    @winner = rps_game.play_rps
+    game = Game.new(@rules, player1, player2)
+    @winner = game.play
     print_results
   end
   
