@@ -13,11 +13,6 @@ require 'pry'
 # None
 
 class GameDriver
-  def initialize(player1 = "ai_player", player2 = "ai_player")
-    start_rps(player1, player2)
-  end
-  
-  private
   
   # Private: #play
   # In charge of creating other objects and passing them into the game.
@@ -32,14 +27,56 @@ class GameDriver
   # State Changes:
   # None
   
-  def start_rps(name1, name2)
+  def start_rps
+    game_type = get_game_type
+    player1 = get_player
+    player2 = get_player
     factory = PlayerFactory.new
-    rules = RPSRules.new
-    player1 = factory.create_player(name1, rules)
-    player2 = factory.create_player(name2, rules)
-    rps_game = Game.new(rules, player1, player2)
+    
+    rps_game = Game.new(@rules, player1, player2)
     @winner = rps_game.play_rps
     print_results
+  end
+  
+  private
+  
+  def get_player
+    puts "Enter 1 to add human player. \nEnter 2 to add AI player."
+    player_type = gets.chomp
+    set_player(player_type)
+  end
+  
+  def set_player(player_type)
+    case player_type
+    when "1"
+      puts "Please enter your name:"
+      player = Player.new(gets.chomp)
+    when "2"
+      puts "Creating AI player.  Please wait."
+      player = AI_Player.new(@rules)
+      player.set_name
+    else
+      get_player
+    end
+    player
+  end
+      
+  
+  def get_game_type
+    puts "Please select from the following list:\n1. Rock, Paper, Scissors\n2. Rock, Paper, Scissors, Lizard, Spock"
+    input = gets.chomp
+    set_game_type(input)
+  end
+  
+  def set_game_type(input)
+    case input
+    when "1"
+      @rules = RPSRules.new
+    when "2"
+      @rules = RPSLSRules.new
+    else
+      get_game_type
+    end
   end
   
   # Private: #play

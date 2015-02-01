@@ -1,19 +1,5 @@
-class RPSRules
+module Shared_Rules
   
-  # Private (Automagical): #initialize
-  # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
-  #   To use, see compare_results that accesses the hash position and spits out the array position
-  #   of the winner assuming the array is: [player1, player2]
-  #
-  # State Changes:
-  # @rules_matrix
-  
-  def initialize
-    @rules_matrix = {"Rock"     => {"Rock" => nil, "Paper" => 1, "Scissors" => 0},
-                     "Paper"    => {"Rock" => 0, "Paper" => nil, "Scissors" => 1},
-                     "Scissors" => {"Rock" => 1, "Paper" => 0, "Scissors" => nil}}
-  end
-
   # Public: #provide_moves
   # Prints out the valid moves based on the current rule set.
   #
@@ -62,6 +48,48 @@ class RPSRules
   
   def compare_results(move1, move2)
     @rules_matrix[move1][move2]
+  end
+  
+end
+
+class RPSRules
+  
+  include Shared_Rules
+  
+  # Private (Automagical): #initialize
+  # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
+  #   To use, see compare_results that accesses the hash position and spits out the array position
+  #   of the winner assuming the array is: [player1, player2]
+  #
+  # State Changes:
+  # @rules_matrix
+  
+  def initialize
+    @rules_matrix = {"Rock"     => {"Rock" => nil, "Paper" => 1, "Scissors" => 0},
+                     "Paper"    => {"Rock" => 0, "Paper" => nil, "Scissors" => 1},
+                     "Scissors" => {"Rock" => 1, "Paper" => 0, "Scissors" => nil}}
+  end
+
+end
+
+class RPSLSRules
+  
+  include Shared_Rules
+  
+  # Private (Automagical): #initialize
+  # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
+  #   To use, see compare_results that accesses the hash position and spits out the array position
+  #   of the winner assuming the array is: [player1, player2]
+  #
+  # State Changes:
+  # @rules_matrix
+  
+  def initialize
+    @rules_matrix = {"Rock"     => {"Rock" => nil, "Paper" => 1, "Scissors" => 0, "Lizard" => 0, "Spock" => 1},
+                     "Paper"    => {"Rock" => 0, "Paper" => nil, "Scissors" => 1, "Lizard" => 1, "Spock" => 0},
+                     "Scissors" => {"Rock" => 1, "Paper" => 0, "Scissors" => nil, "Lizard" => 0, "Spock" => 1},
+                     "Lizard"   => {"Rock" => 1, "Paper" => 0, "Scissors" => 1, "Lizard" => nil, "Spock" => 0},
+                     "Spock"    => {"Rock" => 0, "Paper" => 1, "Scissors" => 0, "Lizard" => 1, "Spock" => nil}}
   end
   
 end
