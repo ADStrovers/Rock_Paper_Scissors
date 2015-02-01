@@ -49,10 +49,9 @@ class GameDriver
   def set_player(player_type)
     case player_type
     when "1"
-      puts "Please enter your name:"
       player = Player.new(gets.chomp)
+      player.set_name
     when "2"
-      puts "Creating AI player.  Please wait."
       player = AI_Player.new(@rules)
       player.set_name
     else

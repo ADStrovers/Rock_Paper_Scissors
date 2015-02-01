@@ -45,6 +45,11 @@ class Player
     @won = false
   end
   
+  def set_name
+    puts "Please enter your name:"
+    @name = gets.chomp
+  end
+  
   # Public: #get_move
   # Prompts for a string and sets @move to that string.
   #
