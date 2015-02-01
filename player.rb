@@ -1,3 +1,23 @@
+module Shared_Player
+  
+  # Public: #increase_score
+  # Increments @score by given number.  If not provided defaults to 1
+  #
+  # Parameters:
+  # inc - Integer
+  #
+  # Returns:
+  # Player: Whoever was victorious.
+  #
+  # State Changes:
+  # Sets @winning_player and @losing_player.
+  
+  def increase_score(inc = 1)
+    @score += inc.to_i
+  end
+  
+end
+
 # Class: Player
 #
 # Models each player within the game
@@ -16,27 +36,13 @@ class Player
   attr_reader :name, :score
   attr_accessor :won, :move
   
+  include Shared_Player
+  
   def initialize(name)
     @name = name
     @move = ""
     @score = 0
     @won = false
-  end
-  
-  # Public: #increase_score
-  # Increments @score by given number.  If not provided defaults to 1
-  #
-  # Parameters:
-  # inc - Integer
-  #
-  # Returns:
-  # Player: Whoever was victorious.
-  #
-  # State Changes:
-  # Sets @winning_player and @losing_player.
-  
-  def increase_score(inc = 1)
-    @score += inc.to_i
   end
   
   # Public: #get_move
@@ -53,6 +59,33 @@ class Player
   def get_move
     print "#{@name}, please give me your move: "
     @move = gets.chomp.capitalize
+  end
+  
+end
+
+class AI_Player
+  attr_reader :name, :score
+  attr_accessor :won, :move
+  
+  include Shared_Player
+  
+  def initialize(rules)
+    @name = "AI Player"
+    @possible_name = ["Lewis Skolnick", "Milton Waddams", "Claudia Donovan", "Willow Rosenberg"]
+    @move = ""
+    @score = 0
+    @won = false
+    @rules = rules
+  end
+  
+  def set_name
+    @name = @possible_name[rand(3)]
+  end
+  
+  def get_move
+    valid = @rules.provide_moves
+    @move = valid.sample
+    puts "#{@name} chose #{@move}"
   end
   
 end

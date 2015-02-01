@@ -1,5 +1,4 @@
 require_relative 'player'
-require_relative 'ai_player'
 
 class PlayerFactory
   
