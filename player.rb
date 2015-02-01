@@ -1,4 +1,4 @@
-module Shared_Player
+module Shared_Player_Methods
   
   # Public: #increase_score
   # Increments @score by given number.  If not provided defaults to 1
@@ -36,7 +36,7 @@ class Player
   attr_reader :name, :score
   attr_accessor :won, :move
   
-  include Shared_Player
+  include Shared_Player_Methods
   
   def initialize(name)
     @name = name
@@ -67,7 +67,7 @@ class AI_Player
   attr_reader :name, :score
   attr_accessor :won, :move
   
-  include Shared_Player
+  include Shared_Player_Methods
   
   def initialize(rules)
     @name = "AI Player"

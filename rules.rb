@@ -1,4 +1,4 @@
-module Shared_Rules
+module Shared_Rules_Methods
   
   # Public: #provide_moves
   # Prints out the valid moves based on the current rule set.
@@ -54,7 +54,7 @@ end
 
 class RPSRules
   
-  include Shared_Rules
+  include Shared_Rules_Methods
   
   # Private (Automagical): #initialize
   # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
@@ -74,7 +74,7 @@ end
 
 class RPSLSRules
   
-  include Shared_Rules
+  include Shared_Rules_Methods
   
   # Private (Automagical): #initialize
   # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
