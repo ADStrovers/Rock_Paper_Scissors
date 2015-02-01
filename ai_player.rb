@@ -4,6 +4,7 @@ class AI_Player
   
   def initialize(rules)
     @name = "AI Player"
+    @possible_name = ["Lewis Skolnick", "Milton Waddams", "Claudia Donovan", "Willow Rosenberg"]
     @move = ""
     @score = 0
     @won = false
@@ -11,17 +12,7 @@ class AI_Player
   end
   
   def set_name
-    name = rand(3)
-    case name
-    when 0
-      @name = "Lewis Skolnick"
-    when 1
-      @name = "Milton Waddams"
-    when 2
-      @name = "Claudia Donovan"
-    when 3
-      @name = "Willow Rosenberg"
-    end
+    @name = @possible_name[rand(3)]
   end
   
   def increase_score(inc = 1)
@@ -31,6 +22,7 @@ class AI_Player
   def get_move
     valid = @rules.provide_moves
     @move = valid.sample
+    puts "#{@name} chose #{@move}"
   end
   
 end
