@@ -112,8 +112,8 @@ class Game
   
   def compare(player1, player2)
     winner, moves = @validator.compare_results(player1.move, player2.move)
-    player1.move = player2.move = ""  # Does this break LoD?  I assume it does..  Will need to think about how to refactor
-    @printer.center(moves.to_s)
+    player1.move = player2.move = ""  # Does this break LoD?  I assume it does..
+    @printer.center(moves)
     result(winner)
   end
   

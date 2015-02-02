@@ -67,10 +67,10 @@ class RPSRules
   # @rules_matrix
   
   def initialize
-    @win_strings = ["Rock Crushes Scissors", "Paper Covers Rock", "Scissors Cut Paper"]
-    @rules_matrix = {"Rock"     => {"Rock" => [nil], "Paper" => [1, @win_strings[1]], "Scissors" => [0, @win_strings[0]]},
-                     "Paper"    => {"Rock" => [0, @win_strings[1]], "Paper" => [nil], "Scissors" => [1, @win_strings[2]]},
-                     "Scissors" => {"Rock" => [1, @win_strings[0]], "Paper" => [0, @win_strings[2]], "Scissors" => [nil]}}
+    @win_strings = ["Rock Crushes Scissors", "Paper Covers Rock", "Scissors Cut Paper", "This Round Was A Tie"]
+    @rules_matrix = {"Rock"     => {"Rock" => [nil, @win_strings[3]], "Paper" => [1, @win_strings[1]], "Scissors" => [0, @win_strings[0]]},
+                     "Paper"    => {"Rock" => [0, @win_strings[1]], "Paper" => [nil, @win_strings[3]], "Scissors" => [1, @win_strings[2]]},
+                     "Scissors" => {"Rock" => [1, @win_strings[0]], "Paper" => [0, @win_strings[2]], "Scissors" => [nil, @win_strings[3]]}}
   end
 
 end
@@ -93,17 +93,17 @@ class RPSLSRules
     @win_strings = ["Rock Crushes Scissors", "Paper Covers Rock", "Scissors Cut Paper", 
                     "Rock Crushes Lizard", "Spock Vaporizes Rock", "Lizard Poisons Spock", 
                     "Spock Smashes Scissors", "Scissors Decapitates Lizard", 
-                    "Lizard Eats Paper", "Paper Disproves Spock"]
-    @rules_matrix = {"Rock"     => {"Rock" => [nil], "Paper" => [1, @win_strings[1]], "Scissors" => [0, @win_strings[0]], 
+                    "Lizard Eats Paper", "Paper Disproves Spock", "This Round Was A Tie"]
+    @rules_matrix = {"Rock"     => {"Rock" => [nil, @win_strings[10]], "Paper" => [1, @win_strings[1]], "Scissors" => [0, @win_strings[0]], 
                                     "Lizard" => [0, @win_strings[3]], "Spock" => [1, @win_strings[4]]},
-                     "Paper"    => {"Rock" => [0, @win_strings[1]], "Paper" => [nil], "Scissors" => [1, @win_strings[2]], 
+                     "Paper"    => {"Rock" => [0, @win_strings[1]], "Paper" => [nil, @win_strings[10]], "Scissors" => [1, @win_strings[2]], 
                                     "Lizard" => [1, @win_strings[8]], "Spock" => [0, @win_strings[9]]},
-                     "Scissors" => {"Rock" => [1, @win_strings[0]], "Paper" => [0, @win_strings[2]], "Scissors" => [nil], 
+                     "Scissors" => {"Rock" => [1, @win_strings[0]], "Paper" => [0, @win_strings[2]], "Scissors" => [nil, @win_strings[10]], 
                                     "Lizard" => [0, @win_strings[7]], "Spock" => [1, @win_strings[6]]},
                      "Lizard"   => {"Rock" => [1, @win_strings[3]], "Paper" => [0, @win_strings[8]], "Scissors" => [1, @win_strings[7]], 
-                                    "Lizard" => [nil], "Spock" => [0, @win_strings[5]]},
+                                    "Lizard" => [nil, @win_strings[10]], "Spock" => [0, @win_strings[5]]},
                      "Spock"    => {"Rock" => [0, @win_strings[4]], "Paper" => [1, @win_strings[9]], "Scissors" => [0, @win_strings[6]], 
-                                    "Lizard" => [1, @win_strings[5]], "Spock" => [nil]}}
+                                    "Lizard" => [1, @win_strings[5]], "Spock" => [nil, @win_strings[10]]}}
   end
   
 end
