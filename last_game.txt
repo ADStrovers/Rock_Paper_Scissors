@@ -1,26 +1,42 @@
 ============================================================
                       Current Scores:                       
-      Milton Waddams: 0             Lewis Skolnick: 0       
+      Claudia Donovan: 0           Willow Rosenberg: 0      
 ============================================================
-                 Milton Waddams chose Paper                 
-                 Lewis Skolnick chose Rock                  
+                Claudia Donovan chose Paper                 
+                Willow Rosenberg chose Rock                 
                      Paper Covers Rock                      
-       Congrats Milton Waddams!  You won this round.        
+       Congrats Claudia Donovan!  You won this round.       
 ============================================================
                       Current Scores:                       
-      Milton Waddams: 1             Lewis Skolnick: 0       
+      Claudia Donovan: 1           Willow Rosenberg: 0      
 ============================================================
-                 Milton Waddams chose Spock                 
-                Lewis Skolnick chose Lizard                 
-                    Lizard Poisons Spock                    
-       Congrats Lewis Skolnick!  You won this round.        
+                 Claudia Donovan chose Rock                 
+                Willow Rosenberg chose Rock                 
+                                                            
+                   This round was a tie.                    
 ============================================================
                       Current Scores:                       
-      Milton Waddams: 1             Lewis Skolnick: 1       
+      Claudia Donovan: 1           Willow Rosenberg: 0      
 ============================================================
-                 Milton Waddams chose Paper                 
-                Lewis Skolnick chose Lizard                 
-                     Lizard Eats Paper                      
-       Congrats Lewis Skolnick!  You won this round.        
+               Claudia Donovan chose Scissors               
+              Willow Rosenberg chose Scissors               
+                                                            
+                   This round was a tie.                    
 ============================================================
-        Congrats Lewis Skolnick!  You won the game!         
+                      Current Scores:                       
+      Claudia Donovan: 1           Willow Rosenberg: 0      
+============================================================
+                Claudia Donovan chose Paper                 
+              Willow Rosenberg chose Scissors               
+                     Scissors Cut Paper                     
+      Congrats Willow Rosenberg!  You won this round.       
+============================================================
+                      Current Scores:                       
+      Claudia Donovan: 1           Willow Rosenberg: 1      
+============================================================
+               Claudia Donovan chose Scissors               
+                Willow Rosenberg chose Rock                 
+                   Rock Crushes Scissors                    
+      Congrats Willow Rosenberg!  You won this round.       
+============================================================
+       Congrats Willow Rosenberg!  You won the game!        
