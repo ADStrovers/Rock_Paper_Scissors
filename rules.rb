@@ -47,7 +47,7 @@ module Shared_Rules_Methods
   # None
   
   def compare_results(move1, move2)
-    @rules_matrix[move1][move2][0]
+    return @rules_matrix[move1][move2][0], @rules_matrix[move1][move2][1]
   end
   
 end

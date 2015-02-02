@@ -1,0 +1,26 @@
+============================================================
+                      Current Scores:                       
+      Milton Waddams: 0             Lewis Skolnick: 0       
+============================================================
+                 Milton Waddams chose Paper                 
+                 Lewis Skolnick chose Rock                  
+                     Paper Covers Rock                      
+       Congrats Milton Waddams!  You won this round.        
+============================================================
+                      Current Scores:                       
+      Milton Waddams: 1             Lewis Skolnick: 0       
+============================================================
+                 Milton Waddams chose Spock                 
+                Lewis Skolnick chose Lizard                 
+                    Lizard Poisons Spock                    
+       Congrats Lewis Skolnick!  You won this round.        
+============================================================
+                      Current Scores:                       
+      Milton Waddams: 1             Lewis Skolnick: 1       
+============================================================
+                 Milton Waddams chose Paper                 
+                Lewis Skolnick chose Lizard                 
+                     Lizard Eats Paper                      
+       Congrats Lewis Skolnick!  You won this round.        
+============================================================
+        Congrats Lewis Skolnick!  You won the game!         

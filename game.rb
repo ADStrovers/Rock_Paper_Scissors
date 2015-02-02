@@ -1,5 +1,6 @@
 require_relative 'rules'
 require_relative 'player'
+require_relative 'narrator'
 
 # require 'pry'
 
@@ -22,6 +23,7 @@ class Game
     @validator = ruleset
     @players = players
     @victory_condition = 0
+    @printer = Narrator.new(@players)
   end
   
   # Private: #play_rps
@@ -40,10 +42,11 @@ class Game
     wins_needed
     puts "Valid moves are: #{@validator.provide_moves.join(", ")}"
     until wins_needed_met?
+      @printer.scoreboard
       get_moves
       y = compare(@players[0], @players[1])
     end
-    y
+    print_final_winner
   end
   
   private
@@ -87,6 +90,7 @@ class Game
       until @validator.validate_move(player.move)
         player.get_move
       end
+      @printer.center("#{player.name} chose #{player.move}")
     end
   end
   
@@ -104,10 +108,11 @@ class Game
   # 
   
   def compare(player1, player2)
-    res = @validator.compare_results(player1.move, player2.move)
+    winner, moves = @validator.compare_results(player1.move, player2.move)
     player1.move = player2.move = ""  # Does this break LoD?  I assume it does..  Will need to think about how to refactor
-    x = result(res)
-    x
+    @printer.center(moves.to_s)
+    result(winner)
+    
   end
   
   # Private: #result
@@ -126,12 +131,12 @@ class Game
     case int
     when 0
       @players[int].increase_score
-      puts "Congrats #{@players[0].name}!  You won this round."
+      @printer.center("Congrats #{@players[0].name}!  You won this round.")
     when 1
       @players[int].increase_score
-      puts "Congrats #{@players[1].name}!  You won this round."
+      @printer.center("Congrats #{@players[1].name}!  You won this round.")
     else
-      puts "This round was a tie."
+      @printer.center "This round was a tie."
     end
     if int
       @players[int].name
@@ -155,9 +160,27 @@ class Game
     @players.each do |player|
       if player.score == @victory_condition
         done = player.won = true
+        @winner = player.name
       end
     end
     done
+  end
+  
+  # Private: #print_final_results
+  # Responsible for printing the winner of the game
+  #
+  # Parameters:
+  # None
+  #
+  # Returns:
+  # nil
+  #
+  # State Changes:
+  # None
+  
+  def print_final_winner
+    @printer.padding
+    @printer.center("Congrats #{@winner}!  You won the game!")
   end
   
 end

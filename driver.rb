@@ -34,8 +34,7 @@ class GameDriver
     factory = PlayerFactory.new
     
     game = Game.new(@rules, player1, player2)
-    @winner = game.play
-    print_results
+    game.play
   end
   
   private
@@ -78,21 +77,6 @@ class GameDriver
     end
   end
   
-  # Private: #play
-  # Responsible for printing the winner of the game
-  #
-  # Parameters:
-  # None
-  #
-  # Returns:
-  # nil
-  #
-  # State Changes:
-  # None
-  
-  def print_results
-    puts "Congrats #{@winner}!  You won the game!"
-  end
 end
 
 binding.pry
