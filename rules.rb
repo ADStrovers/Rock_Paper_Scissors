@@ -7,12 +7,12 @@ module Shared_Rules_Methods
   # None
   #
   # Returns:
-  # Nil
+  # valid_moves array
   #
   # State Changes:
   # None
   
-  def provide_moves(args = 0)
+  def provide_moves
     valid_moves = @rules_matrix.keys
     valid_moves
   end
@@ -34,14 +34,14 @@ module Shared_Rules_Methods
   end
   
   # Public: #compare_results
-  # Accesses the @rules_matrix to give the winners position
+  # Accesses the @rules_matrix to give the winners position and winning string
   #
   # Parameters:
   # move1   - String: Player 1's move
   # move2   - String: Player 2's move
   #
   # Returns:
-  # nil, 0, or 1.
+  # nil, 0, or 1 and then a String based on move1, move2.
   #
   # State Changes:
   # None
@@ -57,11 +57,13 @@ class RPSRules
   include Shared_Rules_Methods
   
   # Private (Automagical): #initialize
-  # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
-  #   To use, see compare_results that accesses the hash position and spits out the array position
-  #   of the winner assuming the array is: [player1, player2]
+  # Initializes a hash within a hash that says who wins within the context for rock paper scissors and
+  #   what string to use when printing winner.
+  #     To use, see compare_results that accesses the hash position and spits out the array position
+  #     of the winner assuming the array is: [player1, player2]
   #
   # State Changes:
+  # @win_strings
   # @rules_matrix
   
   def initialize
@@ -78,11 +80,13 @@ class RPSLSRules
   include Shared_Rules_Methods
   
   # Private (Automagical): #initialize
-  # Initializes a hash within a hash that says who wins within the context for rock paper scissors.
-  #   To use, see compare_results that accesses the hash position and spits out the array position
-  #   of the winner assuming the array is: [player1, player2]
+  # Initializes a hash within a hash that says who wins within the context for rock paper scissors and
+  #   what string to use when printing winner.
+  #     To use, see compare_results that accesses the hash position and spits out the array position
+  #     of the winner assuming the array is: [player1, player2]
   #
   # State Changes:
+  # @win_strings
   # @rules_matrix
   
   def initialize

@@ -20,7 +20,7 @@ end
 
 # Class: Player
 #
-# Models each player within the game
+# Models a human player within the game
 #
 # Attributes:
 # @name   - String: the player's name.
@@ -30,6 +30,7 @@ end
 #
 # Public Methods:
 # #increase_score
+# #set_name
 # #get_move
 
 class Player
@@ -44,6 +45,15 @@ class Player
     @score = 0
     @won = false
   end
+  
+  # Public: #set_name
+  # Prompts for a string and sets @name to that string.
+  #
+  # Returns:
+  # @name
+  #
+  # State Changes:
+  # @name
   
   def set_name
     puts "Please enter your name: "
@@ -68,6 +78,22 @@ class Player
   
 end
 
+# Class: AI_Player
+#
+# Models an AI player within the game
+#
+# Attributes:
+# @name           - String: the player's name.
+# @possible_name  - Array: lists possible names for the AI Player
+# @move           - String: the move the player is using
+# @score          - Integer: the number of times the player has won in the current series
+# @won            - Boolean: returns true or false if the player has reached the win conditions
+#
+# Public Methods:
+# #increase_score
+# #set_name
+# #get_move
+
 class AI_Player
   attr_reader :name, :score
   attr_accessor :won, :move
@@ -83,9 +109,27 @@ class AI_Player
     @rules = rules
   end
   
+  # Public: #set_name
+  # Randomly sets @name equal to a value withing @possible_name array.
+  #
+  # Returns:
+  # @name
+  #
+  # State Changes:
+  # @name
+  
   def set_name
-    @name = @possible_name[rand(3)]
+    @name = @possible_name.sample
   end
+  
+  # Public: #get_move
+  # Randomly sets a move from valid rules provided by the @rules object.
+  #
+  # Returns:
+  # nil
+  #
+  # State Changes:
+  # @move
   
   def get_move
     valid = @rules.provide_moves

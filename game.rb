@@ -9,13 +9,14 @@ require_relative 'narrator'
 # In charge of running our games.
 #
 # Attributes:
+# @validator          - Object: Takes in the Rules objects that we pass to it
 # @players            - Array: holds player objects
 # @victory_condition  - Boolean: Determines if the game has been won
-# @winning_player     - String: Holds the name of the last round's winner
-# @rules_matrix       - Hash: Contains winning/losing/draw conditions between moves
+# @printer            - Narrator: Handles game result output to text file
+# @winner             - String: Name of the winning object
 #
 # Public Methods:
-# #play_rps
+# #play
 
 class Game
   
@@ -26,17 +27,17 @@ class Game
     @printer = Narrator.new(@players)
   end
   
-  # Private: #play_rps
-  # Starts and then plays the game with the provided players.
+  # Private: #play
+  # Starts the game.
   #
   # Parameters:
-  # None currently
+  # None
   #
   # Returns:
-  # @winning_player: Whoever was victorious.
+  # nil
   #
   # State Changes:
-  # Not responsible for state changes.
+  # None
   
   def play
     wins_needed
@@ -61,7 +62,7 @@ class Game
   # @victory_condition
   #
   # State Changes:
-  # Sets @victory_condition
+  # @victory_condition
   
   def wins_needed
     until @victory_condition > 0
@@ -71,10 +72,12 @@ class Game
         "I'm sorry that is not a valid number. Please try again."
       end
     end
+    @victory_condition
   end
   
-  # Private: #get_rps_moves
-  # Takes input from player on desired move and passes them to the RPSRules for validation
+  # Private: #get_moves
+  # Loops until player.get_move passes a validation against the rules.
+  # Prints move chosen.
   #
   # Parameters:
   # None
@@ -83,7 +86,7 @@ class Game
   # @players array
   #
   # State Changes:
-  # Changes the state of move for people player within @players.
+  # None
   
   def get_moves
     @players.each do |player|
@@ -99,20 +102,19 @@ class Game
   #
   # Parameters:
   # player1   - Player: first player object
-  # player1   - Player: first player object
+  # player2   - Player: first player object
   #
   # Returns:
   # nil
   #
   # State Changes:
-  # 
+  # None
   
   def compare(player1, player2)
     winner, moves = @validator.compare_results(player1.move, player2.move)
     player1.move = player2.move = ""  # Does this break LoD?  I assume it does..  Will need to think about how to refactor
     @printer.center(moves.to_s)
     result(winner)
-    
   end
   
   # Private: #result
@@ -122,10 +124,10 @@ class Game
   # int   - Integer: Position within @players that the winning object resides.
   #
   # Returns:
-  # nil?  #Unsure just right now.
+  # nil
   #
   # State Changes:
-  # Changes the score of the winning object
+  # None
   
   def result(int)
     case int
@@ -150,10 +152,10 @@ class Game
   # None
   #
   # Returns:
-  # Returns the value of the "done" boolean
+  # Boolean: done
   #
   # State Changes:
-  # Changes the state of the winning player's @won attribute.
+  # @winner
   
   def wins_needed_met?
     done = false
@@ -167,7 +169,7 @@ class Game
   end
   
   # Private: #print_final_results
-  # Responsible for printing the winner of the game
+  # Responsible for passing @winner to printer.
   #
   # Parameters:
   # None

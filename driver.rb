@@ -14,15 +14,11 @@ require 'pry'
 
 class GameDriver
   
-  # Private: #play
+  # Private: #start_game
   # In charge of creating other objects and passing them into the game.
   #
-  # Parameters:
-  # name1 - String: Name of the first player class to be made.
-  # name2 - String: Name of the second player class to be made.
-  #
   # Returns:
-  # An emptry string.
+  # nil
   #
   # State Changes:
   # None
@@ -39,11 +35,32 @@ class GameDriver
   
   private
   
+  # Private: #get_player
+  # In charge of getting input and passing input to set_player
+  #
+  # Returns:
+  # New Player or AI_Player object
+  #
+  # State Changes:
+  # None
+  
   def get_player
     puts "Enter 1 to add human player. \nEnter 2 to add AI player."
     player_type = gets.chomp
     set_player(player_type)
   end
+  
+  # Private: #get_player
+  # Takes input and creates new Player or AI_Player based on value
+  #
+  # Parameters:
+  # player_type - String: 1 if human, 2 if ai.
+  #
+  # Returns:
+  # New Player or AI_Player object
+  #
+  # State Changes:
+  # None - all local variables.
   
   def set_player(player_type)
     case player_type
@@ -59,12 +76,32 @@ class GameDriver
     player
   end
       
+  # Private: #get_game_type
+  # Receives input and passes to set_game_type
+  #
+  # Returns:
+  # nil
+  #
+  # State Changes:
+  # None
   
   def get_game_type
     puts "Please select from the following list:\n1. Rock, Paper, Scissors\n2. Rock, Paper, Scissors, Lizard, Spock"
     input = gets.chomp
     set_game_type(input)
   end
+  
+  # Private: #set_game_type
+  # Takes input and sets @rules to either RPSRUles or RPSLSRules
+  #
+  # Parameters:
+  # input - String: "1" if RPS, "2" if RPSLS
+  #
+  # Returns:
+  # nil
+  #
+  # State Changes:
+  # @rules
   
   def set_game_type(input)
     case input
